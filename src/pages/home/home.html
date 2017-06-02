@@ -4,11 +4,14 @@
       Ionic Blank
     </ion-title>
   </ion-navbar>
+    <ion-searchbar #searchBar (ionChange)="onChangeSeacrhBar($event, searchBar.value)">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      {{item.name}} -> {{item.rate}}
+    </ion-item>
+  </ion-list>
 </ion-content>
