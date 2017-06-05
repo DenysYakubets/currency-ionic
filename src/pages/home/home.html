@@ -1,17 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="dark">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input id="basic-number" type="number" placeholder="How much?" center></ion-input>
+            </ion-col>
+            <ion-col>
+              <button ion-button full color="primary"><span class="flag-icon flag-icon-{{basicCurrencyShortStr}}"></span>USD</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
   </ion-navbar>
-    <ion-searchbar #searchBar (ionChange)="onChangeSeacrhBar($event, searchBar.value)">
-  </ion-searchbar>
+
+  <ion-navbar color="primary">
+    <ion-searchbar #searchBar (ionChange)="onChangeSeacrhBar($event, searchBar.value)"></ion-searchbar>
+  </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{item.name}} -> {{item.rate}}
+<ion-content>
+
+  <ion-list [virtualScroll]="items"  approxItemHeight="44px">
+    <ion-item *virtualItem="let item">
+      <span class="flag-icon flag-icon-{{currencyDict[item.name]}}"></span> {{item.name}} -> {{item.rate}}
     </ion-item>
   </ion-list>
 </ion-content>

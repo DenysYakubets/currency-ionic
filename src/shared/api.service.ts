@@ -4,22 +4,25 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+
 @Injectable()
 export class ApiService {
 
     constructor(private http: Http) { }
-    
-    getData(basicCurrency: string){
+
+    getData(basicCurrency: string) {
         return this.http.get(this.baseUrl).map(
             result => {
                 let newResult = new Array();
                 result.json().query.results.rate.forEach(element => {
-                    return newResult.push({name: element.Name.substr(-3), rate: element.Rate});
+                    return newResult.push({ name: element.Name.substr(-3), rate: element.Rate });
                 });
                 return newResult;
             }
         );
     }
+
+    
 
     private baseUrl = `https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.xchange where pair in (
 "USDAED",
@@ -38,22 +41,6 @@ export class ApiService {
 "USDBGN",
 "USDBHD",
 "USDBIF",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
-"USDBDT",
 "USDBDT",
 "USDBMD",
 "USDBND",
